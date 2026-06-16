@@ -12,9 +12,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class BottomSheetHelper {
     public BottomSheetDialog dialog;
-    public BottomSheetDialog(Context context){
+
+    public BottomSheetHelper(Context context) {
         dialog = new BottomSheetDialog(context);
-        View view = LayoutInflater.from(context).inflate(R.layout.bs_select_image,null);
+        View view = LayoutInflater.from(context).inflate(R.layout.bs_select_image, null);
 
         BtnBig btnGallery = view.findViewById(R.id.btnGallery);
         BtnBig btnCamera = view.findViewById(R.id.btnCamera);
@@ -22,15 +23,14 @@ public class BottomSheetHelper {
         btnGallery.init("выбрать из галереи", BtnCustom.TypeButton.SECONDARY);
         btnCamera.init("сфотографировать", BtnCustom.TypeButton.SECONDARY);
 
-        btnGallery.Btn.setOnClickListener(x ->{
+        btnGallery.Btn.setOnClickListener(x -> {
             ProductActivity.init.OpenGallery();
         });
 
-        btnCamera.Btn.setOnClickListener(x ->{
+        btnCamera.Btn.setOnClickListener(x -> {
             ProductActivity.init.OpenCamera();
         });
 
         dialog.setContentView(view);
-        }
     }
 }

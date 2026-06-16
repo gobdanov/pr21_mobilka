@@ -23,7 +23,7 @@ public class ProductCreate extends MyAsyncTask {
     String token;
     Product product;
     Uri uri;
-    public ProductCreate(String token,Product product, Uri uri, MyResponseCallback callback){
+    public ProductCreate(Context context, String token,Product product, Uri uri, MyResponseCallback callback){
         super(callback);
 
         this.token = token;

@@ -3,7 +3,7 @@ package com.example.network.domains.models;
 public class Product {
     public Integer id;
     public String name;
-    public String description
+    public String description;
     public Integer gender;
     public String expendture;
     public Integer price;

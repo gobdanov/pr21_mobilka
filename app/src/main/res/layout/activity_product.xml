@@ -68,8 +68,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:padding="14dp
-                android:background="@drawable/ic_launcher_background"/>
+                android:padding="14dp"
+                android:background="@drawable/background_bottom_sheet"/>
 
             <com.example.uicomponents.button.EtxCustom
                 android:id="@+id/etExpenditure"

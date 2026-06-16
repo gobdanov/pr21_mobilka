@@ -51,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this,ProductActivity.class);
             startActivity(intent);
         });
+
         ProductGetUser();
+
+
     }
 
     public void ProductGetUser(){
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         result,
                         new TypeToken<ArrayList<Product>>(){}.getType()
                 );
-                CreateElement
+                CreateElement();
             }
 
             @Override
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void CreateElement(){
         for (Product product : Products){
-            View itemProduct = LayoutInflater.from(this).inflate(R.layout.item_product,AllContent,false);
+            View itemProduct = LayoutInflater.from(this).inflate(R.layout.item,AllContent,false);
             BtnBig btnBig = itemProduct.findViewById(R.id.btnOpenProduct);
             TextView tbName = itemProduct.findViewById(R.id.tbName);
             TextView tbPrice = itemProduct.findViewById(R.id.tvPrice);
