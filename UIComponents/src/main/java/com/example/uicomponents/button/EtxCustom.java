@@ -14,46 +14,75 @@ import com.example.uicomponents.R;
 
 public class EtxCustom extends ConstraintLayout {
     public EditText etx;
-    public enum TypeEtx{
-        DEFAULT, HOVER,ERROR
-    }
-    public EtxCustom(@NonNull Context context){
-        super(context);
-        init(null);
-    }
-    public EtxCustom(@NonNull Context context, @Nullable AttributeSet attrs){
-        super(context,attrs);
-        init(null);
-    }
-    public EtxCustom(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr){
-        super(context,attrs,defStyleAttr);
-        init(null);
+
+    public enum TypeEtx {
+        DEFAULT, HOVER, ERROR
     }
 
-    public void init(Integer idLayout){
+    // Конструкторы
+    public EtxCustom(@NonNull Context context) {
+        super(context);
+        initLayout();  // ✅ Загружаем layout
+    }
+
+    public EtxCustom(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        initLayout();  // ✅ Загружаем layout
+    }
+
+    public EtxCustom(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initLayout();  // ✅ Загружаем layout
+    }
+
+    // Метод для загрузки layout и инициализации EditText
+    private void initLayout() {
+        // Инфлейтим layout, который содержит EditText с id = "etx"
+        LayoutInflater.from(getContext()).inflate(R.layout.etx, this, true);
+        etx = findViewById(R.id.etx);
+
+        // Важно: проверяем, что etx найден!
+        if (etx == null) {
+            throw new IllegalStateException("EditText with id 'etx' not found in layout");
+        }
+    }
+
+    // Метод для загрузки кастомного layout (если нужно)
+    public void init(Integer idLayout) {
         if (idLayout == null) return;
-        LayoutInflater.from(this.getContext()).inflate(idLayout,this,true);
+        LayoutInflater.from(getContext()).inflate(idLayout, this, true);
         etx = findViewById(R.id.etx);
     }
 
+    // Метод для установки текста и стиля
     public void init(String value, TypeEtx type) {
+        if (etx == null) {
+            throw new IllegalStateException("etx is null! Make sure initLayout() was called.");
+        }
+
         etx.setText(value);
-        if(type == EtxCustom.TypeEtx.DEFAULT){
-            etx.setBackgroundResource(R.drawable.etx_default);
-            etx.setTextColor(Color.parseColor("#ffffff"));
-        }
-        else if(type == TypeEtx.ERROR){
-            etx.setBackgroundResource(R.drawable.etx_error);
-            etx.setTextColor(Color.parseColor("#ffffff"));
-        }
-        else if(type == TypeEtx.HOVER){
-            etx.setBackgroundResource(R.drawable.etx_hover);
-            etx.setTextColor(Color.parseColor("#ffffff"));
+
+        switch (type) {
+            case DEFAULT:
+                etx.setBackgroundResource(R.drawable.etx_default);
+                etx.setTextColor(Color.parseColor("#ffffff"));
+                break;
+            case ERROR:
+                etx.setBackgroundResource(R.drawable.etx_error);
+                etx.setTextColor(Color.parseColor("#ffffff"));
+                break;
+            case HOVER:
+                etx.setBackgroundResource(R.drawable.etx_hover);
+                etx.setTextColor(Color.parseColor("#ffffff"));
+                break;
         }
     }
+
     @Override
-    public void setEnabled(boolean enabled){
+    public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        etx.setEnabled(enabled);
+        if (etx != null) {
+            etx.setEnabled(enabled);
+        }
     }
 }

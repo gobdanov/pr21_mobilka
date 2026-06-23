@@ -53,7 +53,7 @@ public class ProductActivity extends AppCompatActivity {
 
         bottomSheetHelper = new BottomSheetHelper(this);
 
-        etName.init("подтвердить", EtxCustom.TypeEtx.DEFAULT);
+        btnCreate.init("подтвердить", BtnCustom.TypeButton.PRIMARY);
 
         View.OnFocusChangeListener LastFocus = new View.OnFocusChangeListener() {
             @Override
@@ -72,13 +72,16 @@ public class ProductActivity extends AppCompatActivity {
 
                 /*
                 // Отображаем ошибку, если в поле цены есть нецифровые символы
-                etPrice.On(!isCorrectPrice, "Поле принимает только цифры");
-                */
+                etPrice.OnError(!isCorrectPrice, "Поле принимает только цифры");
+
+                 */
 
                 if (!isCorrectPrice) state = false;
                 // Устанавливаем активность кнопки в зависимости от валидности всех полей
                 btnCreate.setEnabled(state);
             }
+
+
         };
 
         etName.etx.setOnFocusChangeListener(LastFocus);
@@ -121,10 +124,8 @@ public class ProductActivity extends AppCompatActivity {
             // Запускаем асинхронную задачу
             RequestProductCreate.execute();
         });
-
-
-
     }
+
     public void OpenGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");    // Фильтр только для изображений

@@ -25,6 +25,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="проекты:"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -36,14 +37,17 @@
             android:layout_marginTop="2.5dp"
             android:src="@drawable/ic_plus"/>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,8 +55,9 @@
             android:id="@+id/AllContent"
             android:orientation="vertical"/>
 
-        </ScrollView>
+    </ScrollView>
 
-    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

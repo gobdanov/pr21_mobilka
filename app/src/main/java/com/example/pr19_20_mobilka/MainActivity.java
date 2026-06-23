@@ -48,13 +48,11 @@ public class MainActivity extends AppCompatActivity {
         AllContent = findViewById(R.id.AllContent);
 
         btnOpenAddProduct.setOnClickListener(v->{
-            Intent intent = new Intent(this,ProductActivity.class);
+            Intent intent = new Intent(this, ProductActivity.class);
             startActivity(intent);
         });
 
         ProductGetUser();
-
-
     }
 
     public void ProductGetUser(){
