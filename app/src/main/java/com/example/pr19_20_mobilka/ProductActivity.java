@@ -53,6 +53,11 @@ public class ProductActivity extends AppCompatActivity {
 
         bottomSheetHelper = new BottomSheetHelper(this);
 
+        etName.init("название", EtxCustom.TypeEtx.DEFAULT);
+        etDescription.init("описание", EtxCustom.TypeEtx.DEFAULT);
+        etExpenditure.init("расход", EtxCustom.TypeEtx.DEFAULT);
+        etPrice.init("стоимость", EtxCustom.TypeEtx.DEFAULT);
+
         btnCreate.init("подтвердить", BtnCustom.TypeButton.PRIMARY);
 
         View.OnFocusChangeListener LastFocus = new View.OnFocusChangeListener() {

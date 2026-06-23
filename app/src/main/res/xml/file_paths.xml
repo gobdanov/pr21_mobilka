@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Для фотографий из камеры -->
+    <external-files-path
+        name="my_images"
+        path="Pictures/" />
+
+    <!-- Для общего доступа к файлам -->
+    <external-path
+        name="external"
+        path="." />
+
+    <files-path
+        name="files"
+        path="." />
+
+    <cache-path
+        name="cache"
+        path="." />
+
+    <external-cache-path
+        name="external_cache"
+        path="." />
+
+    <external-media-path
+        name="external_media"
+        path="." />
+</paths>

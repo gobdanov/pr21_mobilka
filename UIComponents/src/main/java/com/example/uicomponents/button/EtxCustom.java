@@ -60,20 +60,20 @@ public class EtxCustom extends ConstraintLayout {
             throw new IllegalStateException("etx is null! Make sure initLayout() was called.");
         }
 
-        etx.setText(value);
+        etx.setHint(value);
 
         switch (type) {
             case DEFAULT:
                 etx.setBackgroundResource(R.drawable.etx_default);
-                etx.setTextColor(Color.parseColor("#ffffff"));
+                etx.setTextColor(Color.parseColor("#000000"));
                 break;
             case ERROR:
                 etx.setBackgroundResource(R.drawable.etx_error);
-                etx.setTextColor(Color.parseColor("#ffffff"));
+                etx.setTextColor(Color.parseColor("#000000"));
                 break;
             case HOVER:
                 etx.setBackgroundResource(R.drawable.etx_hover);
-                etx.setTextColor(Color.parseColor("#ffffff"));
+                etx.setTextColor(Color.parseColor("#000000"));
                 break;
         }
     }
