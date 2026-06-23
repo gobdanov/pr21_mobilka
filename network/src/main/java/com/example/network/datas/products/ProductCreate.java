@@ -19,23 +19,45 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductCreate extends MyAsyncTask {
-    Context context;
-    String token;
-    Product product;
-    Uri uri;
-    public ProductCreate(Context context, String token,Product product, Uri uri, MyResponseCallback callback){
+    private Context context;  // ← Добавили поле
+    private String token;
+    private Product product;
+    private Uri uri;
+
+    public ProductCreate(Context context, String token, Product product, Uri uri, MyResponseCallback callback) {
         super(callback);
 
+        // ✅ СОХРАНЯЕМ контекст
+        this.context = context;
         this.token = token;
         this.product = product;
         this.uri = uri;
     }
+
     @Override
-    protected String doInBackground(Void... voids){
-        try{
+    protected String doInBackground(Void... voids) {
+        try {
+            // ✅ Проверка на null
+            if (context == null) {
+                return "Error: Context is null!";
+            }
+
+            if (uri == null) {
+                return "Error: Image URI is null!";
+            }
+
+            // Теперь context точно не null
             InputStream inputStream = context.getContentResolver().openInputStream(uri);
 
+            if (inputStream == null) {
+                return "Error: Could not open input stream!";
+            }
+
             File tempFile = createTempFileFromServer(inputStream);
+
+            if (tempFile == null) {
+                return "Error: Could not create temp file!";
+            }
 
             Map<String, String> params = new HashMap<>();
             params.put("Name", product.name);
@@ -44,36 +66,40 @@ public class ProductCreate extends MyAsyncTask {
             params.put("Expendture", product.expendture);
             params.put("Price", String.valueOf(product.price));
 
-            Connection.Response response = Jsoup.connect(Settings.Url + "api/product/create")
+            Connection.Response response = Jsoup.connect(Settings.Url + "/product/create")
                     .ignoreContentType(true)
                     .ignoreHttpErrors(true)
                     .method(Connection.Method.POST)
-                    .header("token",token)
+                    .header("token", token)
                     .data(params)
                     .data("ImageFile", tempFile.getName(), new java.io.FileInputStream(tempFile))
                     .execute();
-            return response.statusCode() == 200 ? response.body(): "Error"+response.body();
-        } catch (IOException e){
-            return  "Error: " + e.getMessage();
+
+            return response.statusCode() == 200 ? response.body() : "Error: " + response.body();
+
+        } catch (IOException e) {
+            return "Error: " + e.getMessage();
         }
     }
 
-    public File createTempFileFromServer(InputStream inputStream){
-        try{
+    public File createTempFileFromServer(InputStream inputStream) {
+        try {
             File tempFile = File.createTempFile("upload_", ".jpg");
             tempFile.deleteOnExit();
-            try(FileOutputStream out = new FileOutputStream(tempFile)){
+
+            try (FileOutputStream out = new FileOutputStream(tempFile)) {
                 byte[] buffer = new byte[1024];
                 int bytesRead;
-                while ((bytesRead = inputStream.read(buffer))!= -1){
-                    out.write(buffer,0,bytesRead);
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesRead);
                 }
             }
 
-            return  tempFile;
-        } catch (IOException e){
+            return tempFile;
+
+        } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 }

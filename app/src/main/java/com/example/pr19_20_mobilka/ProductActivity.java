@@ -75,13 +75,12 @@ public class ProductActivity extends AppCompatActivity {
                 // Проверяем, что поле цены содержит только цифры
                 boolean isCorrectPrice = Pattern.matches("\\d+", etPrice.etx.getText().toString());
 
-                /*
-                // Отображаем ошибку, если в поле цены есть нецифровые символы
-                etPrice.OnError(!isCorrectPrice, "Поле принимает только цифры");
+                if (!isCorrectPrice){
+                    state = false;
+                    Toast.makeText(ProductActivity.init,"Поле принимает только цифры!", Toast.LENGTH_SHORT).show();
+                    etPrice.etx.setText("");
+                }
 
-                 */
-
-                if (!isCorrectPrice) state = false;
                 // Устанавливаем активность кнопки в зависимости от валидности всех полей
                 btnCreate.setEnabled(state);
             }
@@ -101,7 +100,7 @@ public class ProductActivity extends AppCompatActivity {
             Product product = new Product(
                     etName.etx.getText().toString(), // Название
                     etDescription.etx.getText().toString(), // Описание
-                    sCategory.getSelectedItemPosition(), // Категория (позиция в спине)
+                    1, // Категория (позиция в списке)
                     etExpenditure.etx.getText().toString(), // Расход
                     Integer.parseInt(etPrice.etx.getText().toString()) // Цена (преобразуем в целое число)
             );

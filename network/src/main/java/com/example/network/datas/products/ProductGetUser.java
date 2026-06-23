@@ -19,7 +19,7 @@ public class ProductGetUser extends MyAsyncTask {
     @Override
     protected String doInBackground(Void... voids){
         try{
-            Connection.Response response = Jsoup.connect(Settings.Url + "api/product/get_product_by_user")
+            Connection.Response response = Jsoup.connect(Settings.Url + "product/get_product_by_user")
                     .ignoreContentType(true)
                     .ignoreHttpErrors(true)
                     .method(Connection.Method.GET)
