@@ -88,7 +88,6 @@ public class ProductActivity extends AppCompatActivity {
 
         };
 
-        etName.etx.setOnFocusChangeListener(LastFocus);
         etPrice.etx.setOnFocusChangeListener(LastFocus);
 
         btnImageSelect.setOnClickListener(v->{
@@ -114,13 +113,13 @@ public class ProductActivity extends AppCompatActivity {
                     new MyResponseCallback() { // Callback для обработки результата
                         @Override
                         public void onCompile(String result) {
-                            Log.e("tag: PRODUCT CREATE", result); // Логируем ответ сервера
+                            Log.e("PRODUCT CREATE:", result); // Логируем ответ сервера
                             Toast.makeText(init, "Новый продукт создан!", Toast.LENGTH_SHORT).show();
                             finish(); // Закрываем активность и возвращаемся на главный экран
                         }
                         @Override
                         public void onError(String error) {
-                            Log.e("tag: PRODUCT CREATE", error);
+                            Log.e("PRODUCT CREATE ERROR:", error);
                         }
                     }
                     );

@@ -32,10 +32,10 @@ public class UserGet extends MyAsyncTask {
                     .execute();
             return response.statusCode() == 200 ?
                     response.body() :
-                    "Error: " + response.body();
+                    "USER GET  Error: " + response.body();
         }
         catch ( IOException e){
-            return "Error:" + e.getMessage();
+            return "USER GET Error:" + e.getMessage();
         }
     }
 }

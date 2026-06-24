@@ -5,19 +5,19 @@ public class Product {
     public String name;
     public String description;
     public Integer gender;
-    public String expendture;
+    public String expenditure;
     public Integer price;
     public String Img;
     public Integer idUser;
     public Product(String name,
     String description,
     Integer gender,
-    String expendture,
+    String expenditure,
     Integer price){
         this.name = name;
         this.description = description;
         this.gender = gender;
-        this.expendture = expendture;
+        this.expenditure = expenditure;
         this.price = price;
     }
 }

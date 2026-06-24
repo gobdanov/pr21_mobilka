@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductCreate extends MyAsyncTask {
-    private Context context;  // ← Добавили поле
+    private Context context;
     private String token;
     private Product product;
     private Uri uri;
@@ -27,7 +27,6 @@ public class ProductCreate extends MyAsyncTask {
     public ProductCreate(Context context, String token, Product product, Uri uri, MyResponseCallback callback) {
         super(callback);
 
-        // ✅ СОХРАНЯЕМ контекст
         this.context = context;
         this.token = token;
         this.product = product;
@@ -37,7 +36,6 @@ public class ProductCreate extends MyAsyncTask {
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            // ✅ Проверка на null
             if (context == null) {
                 return "Error: Context is null!";
             }
@@ -63,22 +61,21 @@ public class ProductCreate extends MyAsyncTask {
             params.put("Name", product.name);
             params.put("Description", product.description);
             params.put("Gender", String.valueOf(product.gender));
-            params.put("Expendture", product.expendture);
+            params.put("Expenditure", product.expenditure);
             params.put("Price", String.valueOf(product.price));
 
-            Connection.Response response = Jsoup.connect(Settings.Url + "/product/create")
+            Connection.Response response = Jsoup.connect(Settings.Url + "product/create")
                     .ignoreContentType(true)
-                    .ignoreHttpErrors(true)
                     .method(Connection.Method.POST)
                     .header("token", token)
                     .data(params)
                     .data("ImageFile", tempFile.getName(), new java.io.FileInputStream(tempFile))
                     .execute();
 
-            return response.statusCode() == 200 ? response.body() : "Error: " + response.body();
+            return response.statusCode() == 200 ? response.body() : "1.PRODUCT CREATE Error: " + response.body();
 
         } catch (IOException e) {
-            return "Error: " + e.getMessage();
+            return "2.PRODUCT CREATE Error: " + e.getMessage();
         }
     }
 

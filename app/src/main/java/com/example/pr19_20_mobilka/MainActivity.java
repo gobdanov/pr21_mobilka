@@ -30,7 +30,7 @@ import domains.PermissionManager;
 public class MainActivity extends AppCompatActivity {
 
     //ПОМЕНЯТЬ!!!!!!
-    public static String TOKEN = "031e353b-7fd7-4d36";
+    public static String TOKEN = "642a1edd-ea95-49c6-bbec-c2252b7f0c55";
     //ПОМЕНЯТЬ!!!!!!
 
     View btnOpenAddProduct;
