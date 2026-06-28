@@ -1,4 +1,4 @@
-package domains;
+package domains.managers;
 
 import android.Manifest;
 import android.app.Activity;

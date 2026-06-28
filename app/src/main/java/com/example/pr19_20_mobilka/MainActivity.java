@@ -8,11 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.network.datas.products.ProductGetUser;
 import com.example.network.domains.callbacks.MyResponseCallback;
@@ -25,7 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-import domains.PermissionManager;
+import domains.managers.PermissionManager;
 
 public class MainActivity extends AppCompatActivity {
 
