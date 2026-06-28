@@ -58,6 +58,6 @@ public class NavigationMenu extends Fragment {
 
         RecyclerView.setAdapter(Adapter);
 
-        return inflater.inflate(R.layout.fragment_navigation_menu, container, false);
+        return view;
     }
 }
