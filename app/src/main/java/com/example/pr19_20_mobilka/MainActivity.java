@@ -29,7 +29,7 @@ import domains.managers.PermissionManager;
 
 public class MainActivity extends AppCompatActivity {
 
-    //ПОМЕНЯТЬ!!!!!!
+    //ПОМЕНЯТЬ!!!!!!!
     public static String TOKEN = "642a1edd-ea95-49c6-bbec-c2252b7f0c55";
     //ПОМЕНЯТЬ!!!!!!
 
