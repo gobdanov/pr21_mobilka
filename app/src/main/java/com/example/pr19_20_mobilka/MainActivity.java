@@ -1,5 +1,6 @@
 package com.example.pr19_20_mobilka;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.network.datas.products.ProductGetUser;
 import com.example.network.domains.callbacks.MyResponseCallback;
@@ -21,6 +24,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
+import domains.callbacks.OnTabClickListener;
 import domains.managers.PermissionManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,61 +33,48 @@ public class MainActivity extends AppCompatActivity {
     public static String TOKEN = "642a1edd-ea95-49c6-bbec-c2252b7f0c55";
     //ПОМЕНЯТЬ!!!!!!
 
-    View btnOpenAddProduct;
-    LinearLayout AllContent;
-    List<Product> Products;
+    public static MainActivity init;
+    public Fragment openFragment;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        PermissionManager.GetPermission(this, this);
+        init = this;
+        context = this;
 
-        btnOpenAddProduct = findViewById(R.id.btnOpenAddProduct);
-        AllContent = findViewById(R.id.AllContent);
-
-        btnOpenAddProduct.setOnClickListener(v->{
-            Intent intent = new Intent(this, ProductActivity.class);
-            startActivity(intent);
-        });
-
-        ProductGetUser();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        NavigationMenu menu = new NavigationMenu(this, MenuItemSelect);
+        ft.add(R.id.menu_navigation, menu);
+        ft.commit();
     }
 
-    public void ProductGetUser(){
-        ProductGetUser RequestProductGetUser= new ProductGetUser(TOKEN, new MyResponseCallback() {
-            @Override
-            public void onCompile(String result) {
-                Log.d("Product Get User", result);
-                Products = new GsonBuilder().create().fromJson(
-                        result,
-                        new TypeToken<ArrayList<Product>>(){}.getType()
-                );
-                CreateElement();
+    OnTabClickListener MenuItemSelect = new OnTabClickListener() {
+        @Override
+        public void OnTabClick(Integer position) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            if(openFragment != null){
+                ft.remove(openFragment);
+            }
+            if(position == -1){
+                openFragment = new ProductsFragment(context, MenuItemSelect);
+                ft.add(R.id.content, openFragment);
+
             }
 
-            @Override
-            public void onError(String error) {
-                Log.e("Product Get User", error);
-            }
-        });
-        RequestProductGetUser.execute();
-    }
-
-    public void CreateElement(){
-        for (Product product : Products){
-            View itemProduct = LayoutInflater.from(this).inflate(R.layout.item,AllContent,false);
-            BtnBig btnBig = itemProduct.findViewById(R.id.btnOpenProduct);
-            TextView tbName = itemProduct.findViewById(R.id.tbName);
-            TextView tbPrice = itemProduct.findViewById(R.id.tvPrice);
-
-            btnBig.init("открыть", BtnCustom.TypeButton.PRIMARY);
-
-            tbName.setText(product.name);
-
-            tbPrice.setText(product.price+"р");
-            AllContent.addView(itemProduct);
+            ft.commit();
         }
+    };
+
+    @Override
+    protected  void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode,data);
+
+        ProductsFragment productFragment = (ProductsFragment) openFragment;
+
+        productFragment.onActivityResult(requestCode, resultCode, data);
     }
+
 }
