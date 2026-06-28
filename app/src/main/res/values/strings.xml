@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">pr19_20_mobilka</string>
+
+    <string-array name="sex">
+        <item>Мужской</item>
+        <item>Женский</item>
+    </string-array>
 </resources>
+

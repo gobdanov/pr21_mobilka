@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:padding="14dp"
-
+                android:entries="@array/sex"
                 android:background="@drawable/background_bottom_sheet"/>
 
             <com.example.uicomponents.button.EtxCustom

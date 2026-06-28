@@ -51,6 +51,8 @@ public class ProductActivity extends AppCompatActivity {
         btnCreate = findViewById(R.id.btnCreate);
         btnImageSelect = findViewById(R.id.btnImageSelect);
 
+
+
         bottomSheetHelper = new BottomSheetHelper(this);
 
         etName.init("название", EtxCustom.TypeEtx.DEFAULT);
@@ -96,10 +98,16 @@ public class ProductActivity extends AppCompatActivity {
 
         btnCreate.Btn.setOnClickListener(v -> {
             // Создаем объект Product из данных, введенных пользователем
+
+            int sex = 1;
+            if (sCategory.getSelectedItem().toString() != "Мужской"){
+                sex =0;
+            }
+
             Product product = new Product(
                     etName.etx.getText().toString(), // Название
                     etDescription.etx.getText().toString(), // Описание
-                    1, // Категория (позиция в списке)
+                    sex, // Категория (позиция в списке)
                     etExpenditure.etx.getText().toString(), // Расход
                     Integer.parseInt(etPrice.etx.getText().toString()) // Цена (преобразуем в целое число)
             );
