@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     //ПОМЕНЯТЬ!!!!!!!
     public static String TOKEN = "642a1edd-ea95-49c6-bbec-c2252b7f0c55";
-    //ПОМЕНЯТЬ!!!!!!
+    //ПОМЕНЯТЬ!!!!!!!
 
     public static MainActivity init;
     public Fragment openFragment;
