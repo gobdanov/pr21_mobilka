@@ -50,9 +50,9 @@
 
             <com.example.uicomponents.button.EtxCustom
                 android:id="@+id/etDescription"
-                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
 
             <TextView
                 android:id="@+id/textView"

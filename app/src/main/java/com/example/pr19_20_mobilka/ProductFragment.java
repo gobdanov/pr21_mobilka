@@ -2,6 +2,8 @@ package com.example.pr19_20_mobilka;
 
 import static android.app.Activity.RESULT_OK;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;

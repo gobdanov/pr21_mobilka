@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.network.datas.products.ProductGetUser;
 import com.example.network.domains.callbacks.MyResponseCallback;
@@ -37,10 +38,14 @@ public class ProductsFragment extends Fragment {
     }
 
     View btnOpenAddProduct;
-    LinearLayout AllContent;
-    List<Product> Products;
+    LinearLayout llContent;
+    private List<Product> Products = new ArrayList<>();
     Context context;
     OnTabClickListener listener;
+
+    public ProductsFragment() {
+        // Пустой конструктор
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,13 +54,20 @@ public class ProductsFragment extends Fragment {
         PermissionManager.GetPermission(context, MainActivity.init);
 
         btnOpenAddProduct = view.findViewById(R.id.btnOpenAddProduct);
-        AllContent = view.findViewById(R.id.llContent);
+        llContent = view.findViewById(R.id.llContent);
 
         btnOpenAddProduct.setOnClickListener(v->{
+            listener = new OnTabClickListener() {
+                @Override
+                public void OnTabClick(Integer position) {
+
+                }
+            };
             listener.OnTabClick(-1);
         });
 
         ProductGetUser();
+
         return view;
     }
 
@@ -75,6 +87,9 @@ public class ProductsFragment extends Fragment {
                         new TypeToken<ArrayList<Product>>(){}.getType()
                 );
                 CreateElement();
+                for (Product pr : Products){
+                    Log.d("Products", pr.name);
+                }
             }
 
             @Override
@@ -86,11 +101,11 @@ public class ProductsFragment extends Fragment {
     }
 
     public void CreateElement(){
-        AllContent.removeAllViews();
+        llContent.removeAllViews();
         for (Product product : Products){
-            View itemProduct = LayoutInflater.from(context).inflate(R.layout.item,AllContent,false);
+            View itemProduct = LayoutInflater.from(context).inflate(R.layout.item,llContent,false);
             BtnBig btnOpen = itemProduct.findViewById(R.id.btnOpenProduct);
-            TextView tvName = itemProduct.findViewById(R.id.tbName);
+            TextView tvName = itemProduct.findViewById(R.id.tvName);
             TextView tvPrice = itemProduct.findViewById(R.id.tvPrice);
 
             btnOpen.init("открыть", BtnCustom.TypeButton.PRIMARY);
@@ -101,7 +116,7 @@ public class ProductsFragment extends Fragment {
 
             registerForContextMenu(itemProduct);
 
-            AllContent.addView(itemProduct);
+            llContent.addView(itemProduct);
         }
     }
 }

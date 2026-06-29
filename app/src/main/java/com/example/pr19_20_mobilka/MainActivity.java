@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo){
         super.onCreateContextMenu(menu,view,menuInfo);
         menu.add(1,101, Menu.NONE, "изменить");
-        menu.add(1,102, Menu.NONE, "удалить");
+        menu.add(2,102, Menu.NONE, "удалить");
     }
 
     @Override
