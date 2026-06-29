@@ -129,15 +129,15 @@ public class ProductFragment extends Fragment {
             File PhotoFile = File.createTempFile(
                     "MY_PHOTO_CADR", // Префикс имени файла
                     ".jpg", // Расширение файла
-                    getExternalFilesDir(Environment.DIRECTORY_PICTURES) // Директория для сохранения
+                    context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) // Директория для сохранения
             );
             // Сохраняем абсолютный путь к файлу
             currentPhotoPath = PhotoFile.getAbsolutePath();
             // Получаем URI для файла с использованием FileProvider
             // Это необходимо для безопасного доступа к файлу (начиная с Android 7.0)
             imageUri = FileProvider.getUriForFile(
-                    this,
-                    getPackageName() + ".provider", // Authority из файла манифеста
+                    context,
+                    context.getPackageName() + ".provider", // Authority из файла манифеста
                     PhotoFile
             );
             // Добавляем файл для временного доступа к URI

@@ -20,10 +20,10 @@ import domains.callbacks.OnTabClickListener;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
-    List<MenuItem> Items;
+    List<domains.models.MenuItem> Items;
     Integer SelectPosition = 0;
     public OnTabClickListener listener;
-    public MenuAdapter(List<MenuItem> items, OnTabClickListener listener){
+    public MenuAdapter(List<domains.models.MenuItem> items, OnTabClickListener listener){
         Items = items;
         this.listener = listener;
     }
@@ -71,8 +71,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         public ViewHolder(@NonNull View ItemView){
             super(ItemView);
 
-            Image = ItemView.findViewById(com.example.uicomponents.R.id.imageView);
-            Title = ItemView.findViewById(com.example.uicomponents.R.id.textView);
+            Image = ItemView.findViewById(R.id.imageView);
+            Title = ItemView.findViewById(R.id.textView);
 
             Parent = (LinearLayout) Image.getParent();
         }

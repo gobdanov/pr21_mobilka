@@ -49,7 +49,7 @@ public class ProductsFragment extends Fragment {
         PermissionManager.GetPermission(context, MainActivity.init);
 
         btnOpenAddProduct = view.findViewById(R.id.btnOpenAddProduct);
-        AllContent = view.findViewById(R.id.AllContent);
+        AllContent = view.findViewById(R.id.llContent);
 
         btnOpenAddProduct.setOnClickListener(v->{
             listener.OnTabClick(-1);
@@ -97,7 +97,6 @@ public class ProductsFragment extends Fragment {
             btnOpen.Btn.setTextSize(16);
 
             btnOpen.Btn.setText(product.name);
-
             tvPrice.setText(product.price+"р");
 
             registerForContextMenu(itemProduct);

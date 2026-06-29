@@ -4,10 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -46,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
         context = this;
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
         NavigationMenu menu = new NavigationMenu(this, MenuItemSelect);
+
         ft.add(R.id.menu_navigation, menu);
         ft.commit();
     }
@@ -59,9 +65,11 @@ public class MainActivity extends AppCompatActivity {
                 ft.remove(openFragment);
             }
             if(position == -1){
+                openFragment = new ProductsFragment(context, null);
+                ft.add(R.id.content, openFragment);
+            } else if (position == 2){
                 openFragment = new ProductsFragment(context, MenuItemSelect);
                 ft.add(R.id.content, openFragment);
-
             }
 
             ft.commit();
@@ -75,6 +83,25 @@ public class MainActivity extends AppCompatActivity {
         ProductsFragment productFragment = (ProductsFragment) openFragment;
 
         productFragment.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo){
+        super.onCreateContextMenu(menu,view,menuInfo);
+        menu.add(1,101, Menu.NONE, "изменить");
+        menu.add(1,102, Menu.NONE, "удалить");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        if(item.getGroupId() == 1){
+            Toast.makeText(this,"изменение элемента", Toast.LENGTH_SHORT).show();
+        }
+        else if (item.getGroupId() == 2){
+            Toast.makeText(this,"удаление элемента", Toast.LENGTH_SHORT).show();
+        }
+
+        return true;
     }
 
 }

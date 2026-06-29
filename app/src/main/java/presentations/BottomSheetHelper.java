@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.pr19_20_mobilka.ProductActivity;
+import com.example.pr19_20_mobilka.ProductFragment;
 import com.example.pr19_20_mobilka.R;
 import com.example.uicomponents.button.BtnBig;
 import com.example.uicomponents.button.BtnCustom;
@@ -24,11 +25,11 @@ public class BottomSheetHelper {
         btnCamera.init("сфотографировать", BtnCustom.TypeButton.SECONDARY);
 
         btnGallery.Btn.setOnClickListener(x -> {
-            ProductActivity.init.OpenGallery();
+            ((ProductFragment)ProductActivity.init.openFragment).OpenGallery();
         });
 
         btnCamera.Btn.setOnClickListener(x -> {
-            ProductActivity.init.OpenCamera();
+            ((ProductFragment)ProductActivity.init.openFragment).OpenCamera();
         });
 
         dialog.setContentView(view);

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
 
 import com.example.network.datas.products.ProductCreate;
 import com.example.network.domains.callbacks.MyResponseCallback;
@@ -29,6 +30,7 @@ import presentations.BottomSheetHelper;
 
 public class ProductActivity extends AppCompatActivity {
     public static ProductActivity init;
+    public Fragment openFragment;
     EtxCustom etName, etDescription, etExpenditure, etPrice;
     Spinner sCategory;
     BtnBig btnCreate;
